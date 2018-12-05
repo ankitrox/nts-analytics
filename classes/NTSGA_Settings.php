@@ -24,7 +24,7 @@ if(!class_exists('NTSGA_Settings')){
         function ntsga_settings_init(){
             register_setting( 'ntsga', 'ntsga_options' );
             add_settings_section( 'ntsga_section', __( 'Google Analytics API Settings Data', 'ntsga' ), function(){}, 'ntsga' );
-            add_settings_field( 'ntsga_viewid', __('Enter View ID', 'ntsga'), array($this, 'ntsga_field_cb'), 'ntsga', 'ntsga_section', array( 'label_for'=>'ntsga_viewid', 'type'=>'text') );
+            add_settings_field( 'ntsga_viewid', __('Enter View ID', 'ntsga'), array($this, 'ntsga_field_cb'), 'ntsga', 'ntsga_section', array( 'label_for'=>'ntsga_viewid', 'type'=>'text', 'help_text'=>'<p>'. sprintf( __('Click <a target="_blank" href="%s">here</a> to check how to find view ID.', 'ntsga'), 'https://keyword-hero.com/documentation/finding-your-view-id-in-google-analytics' ) .'</p>' ) );
         }
         
         /*
@@ -86,6 +86,8 @@ if(!class_exists('NTSGA_Settings')){
 
                 case 'text':?>
                     <input autocomplete="off" type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>" name="ntsga_options[<?php echo esc_attr( $args['label_for'] ); ?>]" value="<?php echo !empty($options[$args['label_for']]) ? $options[$args['label_for']] : ''; ?>" /><?php
+                    if(!empty($args['help_text']))
+                        echo $args['help_text'];
                 break;
             
                 default :
