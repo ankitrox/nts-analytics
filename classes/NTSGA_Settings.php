@@ -10,6 +10,7 @@ if(!class_exists('NTSGA_Settings')){
 
         public $settings_helper;
 
+        //Constructor
         function __construct() {
             $this->settings_helper = new NTSGA_Settings_Helper();
             add_action( 'admin_init', array($this, 'ntsga_settings_init') );
@@ -18,7 +19,7 @@ if(!class_exists('NTSGA_Settings')){
         }
         
         /*
-         * 
+         * Settings API
          */
         function ntsga_settings_init(){
             register_setting( 'ntsga', 'ntsga_options' );
@@ -26,6 +27,9 @@ if(!class_exists('NTSGA_Settings')){
             add_settings_field( 'ntsga_viewid', __('Enter View ID', 'ntsga'), array($this, 'ntsga_field_cb'), 'ntsga', 'ntsga_section', array( 'label_for'=>'ntsga_viewid', 'type'=>'text') );
         }
         
+        /*
+         * Google Analytics data parameters related to different views.
+         */
         function analytics_data($pagenow){
 
             switch($pagenow){
@@ -72,7 +76,7 @@ if(!class_exists('NTSGA_Settings')){
         }
         
         /*
-         * 
+         * Settings field callback
          */
         function ntsga_field_cb($args){
 
@@ -90,7 +94,7 @@ if(!class_exists('NTSGA_Settings')){
         }
 
         /*
-         * 
+         * Options page for plugin.
          */
         function ntsga_options_page(){
             add_menu_page( __('NTS Google Analytics', 'ntsga'), __('NTS Google Analytics', 'ntsga'), 'manage_options', 'ntsga', array($this, 'ntsga_admin_markup') );
@@ -101,7 +105,7 @@ if(!class_exists('NTSGA_Settings')){
         }
         
         /*
-         * 
+         * Callback function for option pages.
          */
         function ntsga_overview(){
 
@@ -124,7 +128,7 @@ if(!class_exists('NTSGA_Settings')){
         }
         
         /*
-         * 
+         * Settings API markup
          */
         function ntsga_admin_markup(){
             

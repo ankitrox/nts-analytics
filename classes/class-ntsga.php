@@ -8,13 +8,19 @@ if(!class_exists('NTSGA')){
     
     class NTSGA {
         
+        //variable to hold class instance
         static $instance;
         
-        public $api_client; //API Client object
+        //API Client object
+        public $api_client;
         
+        //Plugin settings
         protected $settings;
         
-        
+        /*
+         * Instantiate the class and return the object.
+         * Singleton pattern.
+         */
         static function instance(){
             
             if( is_null(self::$instance) ){
@@ -55,6 +61,9 @@ if(!class_exists('NTSGA')){
             return null;
         }
 
+        /*
+         * Enqueue scripts and styles in admin.
+         */
         function admin_scripts(){
             wp_register_script('ntsga-charts', 'https://www.gstatic.com/charts/loader.js', array(), false, true);
             wp_register_script('ntsga_script', trailingslashit(NTSGA_BASE_URL).'assets/js/ntsga.js', array('jquery', 'ntsga-charts'), '1.0', true );

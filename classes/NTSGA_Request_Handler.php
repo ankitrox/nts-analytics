@@ -7,7 +7,10 @@ if(!defined('ABSPATH')){
 if(!class_exists('NTSGA_Request_Handler')){
     
     class NTSGA_Request_Handler {
-        
+
+        /*
+         * Get report data for secified period and view.
+         */
         function get_overview_data(){
 
             global $ntsga;
@@ -90,7 +93,7 @@ if(!class_exists('NTSGA_Request_Handler')){
         }
 
         /*
-         * 
+         * Get response data for analytics report.
          */
         function get_response_data($reports){
 
@@ -140,6 +143,9 @@ if(!class_exists('NTSGA_Request_Handler')){
             return apply_filters('ntsga_get_end_date', 'today');
         }
         
+        /*
+         * Get start date for report.
+         */
         function get_start_date(){
             
             $start_date = '';

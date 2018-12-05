@@ -7,7 +7,10 @@ if(!defined('ABSPATH')){
 if( !class_exists('NTSGA_Settings_Helper') ){
     
     class NTSGA_Settings_Helper {
-        
+
+        /*
+         * Adds button for different periods.
+         */
         function overview_periods() {
             
             $periods = apply_filters( 'ntsga_ov_periods', array(
@@ -28,6 +31,9 @@ if( !class_exists('NTSGA_Settings_Helper') ){
             return apply_filters('overview_period_html', ob_get_clean());
         }
         
+        /*
+         * Add ajax loader on page.
+         */
         function loader(){?>
             <div id="ntsga-loader"><img src="<?php echo trailingslashit(NTSGA_BASE_URL).'assets/images/ajax-loader.gif'; ?>" alt="<?php _e('Loader', 'ntsga') ?>" /></div><?php
         }

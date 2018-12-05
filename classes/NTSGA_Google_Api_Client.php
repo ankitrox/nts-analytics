@@ -8,10 +8,19 @@ if(!class_exists('NTSGA_Google_Api_Client')){
 
     class NTSGA_Google_Api_Client {
 
+        /*
+         * Configuration for analytics object
+         */
         private $config;
         
+        /*
+         * Client object from Google analytics lib.
+         */
         private $client;
         
+        /*
+         * Analytics request handling object.
+         */
         public $request_handler;
 
         //Constructor
@@ -35,6 +44,9 @@ if(!class_exists('NTSGA_Google_Api_Client')){
             $this->hooks();
         }
         
+        /*
+         * Add necessary hooks
+         */
         function hooks(){
             add_action('admin_init', array($this, 'setAuth'));
             add_action('wp_ajax_get_overview_data'.$action, array( $this->request_handler, 'get_overview_data'));
@@ -146,6 +158,10 @@ if(!class_exists('NTSGA_Google_Api_Client')){
             return false;
         }
         
+        /*
+         * Checks if accesstoken is still valid.
+         * Also, checks if app has been authorized to access data.
+         */
         function hasAccess(){
             
             return $this->getAccessToken();
